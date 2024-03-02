@@ -19,11 +19,12 @@ const AuthenticatedUsername = () => {
 						src={user?.picture}
 						className='w-[25px] h-[25px] rounded-full object-cover'
 					/>
-					{`${user?.family_name
-						?.charAt(0)
-						.toUpperCase()}${user?.family_name?.slice(1)}`}
+					{user?.email?.split('@')[0]}
 				</DropdownMenuTrigger>
 				<DropdownMenuContent>
+					<DropdownMenuItem>
+						<Link to='/manage-restuarant'>Manage Restuarant</Link>
+					</DropdownMenuItem>
 					<DropdownMenuItem>
 						<Link to='/user-profile'>User Profile</Link>
 					</DropdownMenuItem>
