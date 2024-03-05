@@ -3,7 +3,7 @@ import {
 	useGetMyRestuarant,
 	useUpdateMyRestuarant,
 } from '@/api/MyRestuarantAPI';
-import ManageRestuarantFom from '@/forms/manage-restuarant-form/ManageRestuarantFom';
+import ManageRestaurantFom from '@/forms/manage-restuarant-form/ManageRestuarantFom';
 
 const RestuarantPage = () => {
 	const { restuarant, isLoading: isGetRestuarantLoading } =
@@ -23,7 +23,7 @@ const RestuarantPage = () => {
 	const isEditing = !!restuarant;
 
 	return (
-		<ManageRestuarantFom
+		<ManageRestaurantFom
 			restuarant={restuarant}
 			onSave={isEditing ? updateRestuarant : createRestuarant}
 			isLoading={isLoading || isUpdateLoading}

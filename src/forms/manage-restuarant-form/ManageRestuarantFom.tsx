@@ -9,13 +9,13 @@ import { Separator } from '@/components/ui/separator';
 import CuisinesSection from './CuisinesSection';
 import MenuItemsSection from './MenuItemsSection';
 import ImageSection from './ImageSection';
-import { Restuarant } from '@/@types';
+import { Restaurant } from '@/@types';
 import { useEffect } from 'react';
 
 const formSchema = z
 	.object({
-		restuarantName: z.string({
-			required_error: 'Restuarant name is required!',
+		restaurantName: z.string({
+			required_error: 'Restaurant name is required!',
 		}),
 		city: z.string({
 			required_error: 'City is required!',
@@ -51,15 +51,15 @@ const formSchema = z
 		path: ['imageFile'],
 	});
 
-type RestuarantFormData = z.infer<typeof formSchema>;
+type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
-	restuarant?: Restuarant;
+	restuarant?: Restaurant;
 	onSave: (restuarantData: FormData) => void;
 	isLoading: boolean;
 };
-const ManageRestuarantFom = ({ onSave, isLoading, restuarant }: Props) => {
-	const form = useForm<RestuarantFormData>({
+const ManageRestaurantFom = ({ onSave, isLoading, restuarant }: Props) => {
+	const form = useForm<RestaurantFormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			cuisines: [],
@@ -90,9 +90,9 @@ const ManageRestuarantFom = ({ onSave, isLoading, restuarant }: Props) => {
 		form.reset(updatedRestuarant as object);
 	}, [form, restuarant]);
 
-	const onSubmit = (formDataJSON: RestuarantFormData) => {
+	const onSubmit = (formDataJSON: RestaurantFormData) => {
 		const formData = new FormData();
-		formData.append('restuarantName', formDataJSON.restuarantName);
+		formData.append('restuarantName', formDataJSON.restaurantName);
 		formData.append('city', formDataJSON.city);
 		formData.append('country', formDataJSON.country);
 		formData.append(
@@ -137,7 +137,7 @@ const ManageRestuarantFom = ({ onSave, isLoading, restuarant }: Props) => {
 					<LoadingButton />
 				) : (
 					<Button type='submit' className='bg-orange-500 font-bold'>
-						Create Restuarant
+						Create Restaurant
 					</Button>
 				)}
 			</form>
@@ -145,4 +145,4 @@ const ManageRestuarantFom = ({ onSave, isLoading, restuarant }: Props) => {
 	);
 };
 
-export default ManageRestuarantFom;
+export default ManageRestaurantFom;

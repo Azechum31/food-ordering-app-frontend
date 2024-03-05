@@ -21,7 +21,7 @@ const DestailSection = () => {
 			</div>
 			<FormField
 				control={control}
-				name='restuarantName'
+				name='restaurantName'
 				render={({ field }) => (
 					<FormItem>
 						<FormLabel>Restuarant Name</FormLabel>
