@@ -6,7 +6,7 @@ import {
 import ManageRestaurantFom from '@/forms/manage-restuarant-form/ManageRestuarantFom';
 
 const RestuarantPage = () => {
-	const { restuarant, isLoading: isGetRestuarantLoading } =
+	const { restaurant, isLoading: isGetRestuarantLoading } =
 		useGetMyRestuarant();
 	const { createRestuarant, isLoading } = useCreateMyRestuarant();
 	const { updateRestuarant, isLoading: isUpdateLoading } =
@@ -16,15 +16,15 @@ const RestuarantPage = () => {
 		<span>Loading</span>;
 	}
 
-	if (!restuarant) {
+	if (!restaurant) {
 		<span>Unable to load restuarant data!</span>;
 	}
 
-	const isEditing = !!restuarant;
+	const isEditing = !!restaurant;
 
 	return (
 		<ManageRestaurantFom
-			restuarant={restuarant}
+			restuarant={restaurant}
 			onSave={isEditing ? updateRestuarant : createRestuarant}
 			isLoading={isLoading || isUpdateLoading}
 		/>

@@ -1,4 +1,4 @@
-import { Restuarant } from '@/@types';
+import { Restaurant } from '@/@types';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useMutation, useQuery } from 'react-query';
 import { toast } from 'sonner';
@@ -7,7 +7,7 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export const useGetMyRestuarant = () => {
 	const { getAccessTokenSilently } = useAuth0();
-	const getRestuarantRequest = async (): Promise<Restuarant> => {
+	const getRestuarantRequest = async (): Promise<Restaurant> => {
 		const accessToken = await getAccessTokenSilently();
 		const response = await fetch(`${API_BASE_URL}/api/my/restuarant`, {
 			method: 'GET',
@@ -24,7 +24,7 @@ export const useGetMyRestuarant = () => {
 	};
 
 	const {
-		data: restuarant,
+		data: restaurant,
 		isLoading,
 		error,
 	} = useQuery('fetchMyRestuarant', getRestuarantRequest);
@@ -34,7 +34,7 @@ export const useGetMyRestuarant = () => {
 	}
 
 	return {
-		restuarant,
+		restaurant,
 		isLoading,
 	};
 };
@@ -44,7 +44,7 @@ export const useCreateMyRestuarant = () => {
 
 	const createRestuarantRequest = async (
 		restuarant: FormData,
-	): Promise<Restuarant> => {
+	): Promise<Restaurant> => {
 		const accessToken = await getAccessTokenSilently();
 		const response = await fetch(`${API_BASE_URL}/api/my/restuarant`, {
 			method: 'POST',
@@ -88,7 +88,7 @@ export const useUpdateMyRestuarant = () => {
 	const { getAccessTokenSilently } = useAuth0();
 	const createUpdateMyRestuarantRequest = async (
 		restuarant: FormData,
-	): Promise<Restuarant> => {
+	): Promise<Restaurant> => {
 		const accessToken = await getAccessTokenSilently();
 		const response = await fetch(`${API_BASE_URL}/api/my/restuarant`, {
 			method: 'PUT',
@@ -119,7 +119,7 @@ export const useUpdateMyRestuarant = () => {
 	}
 
 	if (isSuccess) {
-		toast.success('Restuarant updated!');
+		toast.success('Restaurant updated!');
 	}
 
 	return { updateRestuarant, isLoading };
