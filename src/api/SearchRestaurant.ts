@@ -1,4 +1,4 @@
-import { RestaurantsSearchResponse } from '@/@types';
+import { Restaurant, RestaurantsSearchResponse } from '@/@types';
 import { SearchState } from '@/pages/SearchPage';
 
 import { useQuery } from 'react-query';
@@ -43,4 +43,35 @@ export const useSearchRestaurant = (
 	}
 
 	return { searchData, isLoading };
+};
+
+export const useRestaurantDetail = (restaurantId?: string) => {
+	const restaurantDetailRequest = async (): Promise<Restaurant> => {
+		const response = await fetch(
+			`${API_BASE_URL}/api/restaurant/${restaurantId}`,
+			{
+				method: 'GET',
+			},
+		);
+
+		if (!response.ok) {
+			throw new Error(`Something went wrong`);
+		}
+
+		return response.json();
+	};
+
+	const {
+		data: restaurant,
+		isLoading,
+		error,
+	} = useQuery('fetchRestaurantDetail', restaurantDetailRequest, {
+		enabled: !!restaurantId,
+	});
+
+	if (error) {
+		error.toString();
+	}
+
+	return { restaurant, isLoading };
 };

@@ -115,7 +115,7 @@ const SearchPage = () => {
 				</div>
 				{searchData?.data.map((item) => (
 					<Link
-						to={`/detial/${item._id}`}
+						to={`/restaurant/${item._id}`}
 						key={item._id}
 						className='mb-5 bg-gray-50 lg:p-6 rounded-lg group'>
 						<SearchResultsCard restaurant={item} />
