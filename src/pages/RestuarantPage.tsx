@@ -14,8 +14,7 @@ const RestuarantPage = () => {
 	const { createRestuarant, isLoading } = useCreateMyRestuarant();
 	const { updateRestuarant, isLoading: isUpdateLoading } =
 		useUpdateMyRestuarant();
-	const { restaurantOrders, isLoading: isOrdersLoading } =
-		useGetMyRestaurantOrders();
+	const { restaurantOrders } = useGetMyRestaurantOrders();
 
 	if (isGetRestuarantLoading) {
 		<span>Loading</span>;
