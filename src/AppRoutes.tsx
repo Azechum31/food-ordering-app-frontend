@@ -7,6 +7,7 @@ import ProtectedRoutes from './auth/ProtectedRoutes';
 import RestuarantPage from './pages/RestuarantPage';
 import SearchPage from './pages/SearchPage';
 import RestaurantDetailPage from './pages/RestaurantDetailPage';
+import OrderStatusPage from './pages/OrderStatusPage';
 const AppRoutes = () => {
 	return (
 		<div>
@@ -38,6 +39,14 @@ const AppRoutes = () => {
 
 				<Route path='/auth-callback' element={<AuthCallback />} />
 				<Route element={<ProtectedRoutes />}>
+					<Route
+						path='/order-status'
+						element={
+							<Layout>
+								<OrderStatusPage />
+							</Layout>
+						}
+					/>
 					<Route
 						path='/manage-restuarant'
 						element={

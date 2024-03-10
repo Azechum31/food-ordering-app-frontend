@@ -54,11 +54,11 @@ const formSchema = z
 type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
-	restuarant?: Restaurant;
-	onSave: (restuarantData: FormData) => void;
+	restaurant?: Restaurant;
+	onSave: (restaurantData: FormData) => void;
 	isLoading: boolean;
 };
-const ManageRestaurantFom = ({ onSave, isLoading, restuarant }: Props) => {
+const ManageRestaurantFom = ({ onSave, isLoading, restaurant }: Props) => {
 	const form = useForm<RestaurantFormData>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
@@ -68,31 +68,31 @@ const ManageRestaurantFom = ({ onSave, isLoading, restuarant }: Props) => {
 	});
 
 	useEffect(() => {
-		if (!restuarant) {
+		if (!restaurant) {
 			return;
 		}
 
 		const deliveryPriceFormated = parseInt(
-			(restuarant.deliveryPrice / 100).toFixed(2),
+			(restaurant.deliveryPrice / 100).toFixed(2),
 		);
 
-		const menuItemsFormated = restuarant.menuItems.map((item) => ({
+		const menuItemsFormated = restaurant.menuItems.map((item) => ({
 			...item,
 			price: parseInt((item.price / 100).toFixed(2)),
 		}));
 
 		const updatedRestuarant = {
-			...restuarant,
+			...restaurant,
 			deliveryPrice: deliveryPriceFormated,
 			menuItems: menuItemsFormated,
 		};
 
 		form.reset(updatedRestuarant as object);
-	}, [form, restuarant]);
+	}, [form, restaurant]);
 
 	const onSubmit = (formDataJSON: RestaurantFormData) => {
 		const formData = new FormData();
-		formData.append('restuarantName', formDataJSON.restaurantName);
+		formData.append('restaurantName', formDataJSON.restaurantName);
 		formData.append('city', formDataJSON.city);
 		formData.append('country', formDataJSON.country);
 		formData.append(

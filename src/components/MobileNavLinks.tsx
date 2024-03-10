@@ -8,6 +8,11 @@ const MobileNavLinks = () => {
 	return (
 		<>
 			<Link
+				to='/order-status'
+				className='font-bold hover:text-orange-500'>
+				Order Status
+			</Link>
+			<Link
 				to='/manage-restuarant'
 				className='font-bold hover:text-orange-500'>
 				Manage Restuarant
